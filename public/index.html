@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#000000" />
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    /> <title>HPE_CTY</title>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+    <script src="index.js"></script>
+
+  <style>
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-weight: normal;
+      font-size: 1.4em;
+      margin: 10px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 10px;
+    }
+
+    button {
+      margin: 10px;
+      width: calc(12.5% - 20px); /* One-eighth of the screen width minus margin */
+    }
+
+    .workspace-container {
+      flex-grow: 1;
+      display: flex;
+    }
+
+    #blocklyDiv {
+      flex-grow: 1;
+    }
+
+    #generatedCodeContainer {
+      flex-grow: 1;
+      margin: 10px;
+      resize: none;
+    }
+
+    #root{
+      height: 40px;
+      display: none;
+    }
+
+    .hide {
+      display: none;
+    }
+
+  </style>
+</head>
+
+<body onload="start()">
+  <h1>HPECTY</h1>
+  
+  <div class="button-container">
+    <button onclick="executeCode()">Download</button>
+    <button onclick="activateDiv()">Run React JSON App</button>
+  </div>
+  <div class="workspace-container">
+    <div id="blocklyDiv"></div>
+    <textarea id="generatedCodeContainer" readonly placeholder="Generated JSON will go here..."></textarea> 
+  </div>
+  <div id="root"></div>
+
+<script>
+  function activateDiv() { 
+  const code = Blockly.JavaScript.workspaceToCode(workspace);
+  const blob = new Blob([code], { type: 'application/json' });
+  console.log(code);
+  // public/index.js
+  sessionStorage.setItem('myData',code);
+  var targetDiv = document.getElementById("root");
+  targetDiv.style.display = "block";
+}
+</script>
+
+</body>
+</html>
