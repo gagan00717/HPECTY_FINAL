@@ -142,6 +142,15 @@ Blockly.JavaScript['name'] = function (block) {
   var code = '"Name": {' + statements_properties + '},\n';
   return code;
 };
+Blockly.JavaScript['namelast'] = function (block) {
+  var statements_properties = Blockly.JavaScript.statementToCode(
+    block,
+    'properties'
+  );
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"Name": {' + statements_properties + '}\n';
+  return code;
+};
 Blockly.JavaScript['desc'] = function (block) {
   var statements_properties = Blockly.JavaScript.statementToCode(
     block,
@@ -151,6 +160,15 @@ Blockly.JavaScript['desc'] = function (block) {
   var code = '"Description": {' + statements_properties + '},\n';
   return code;
 };
+Blockly.JavaScript['desclast'] = function (block) {
+  var statements_properties = Blockly.JavaScript.statementToCode(
+    block,
+    'properties'
+  );
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"Description": {' + statements_properties + '}\n';
+  return code;
+};
 Blockly.JavaScript['Logger'] = function (block) {
   var statements_properties = Blockly.JavaScript.statementToCode(
     block,
@@ -158,6 +176,15 @@ Blockly.JavaScript['Logger'] = function (block) {
   );
   // TODO: Assemble JavaScript into code variable.
   var code = '"Logger": {' + statements_properties + '},\n';
+  return code;
+};
+Blockly.JavaScript['Loggerlast'] = function (block) {
+  var statements_properties = Blockly.JavaScript.statementToCode(
+    block,
+    'properties'
+  );
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"Logger": {' + statements_properties + '}\n';
   return code;
 };
 Blockly.JavaScript['Type'] = function (block) {
@@ -230,6 +257,15 @@ Blockly.JavaScript['loggingformat'] = function (block) {
   );
   // TODO: Assemble JavaScript into code variable.
   var code = '"Logging-Format": {' + statements_properties + '},\n';
+  return code;
+};
+Blockly.JavaScript['loggingformatlast'] = function (block) {
+  var statements_properties = Blockly.JavaScript.statementToCode(
+    block,
+    'properties'
+  );
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"Logging-Format": {' + statements_properties + '}\n';
   return code;
 };
 
@@ -435,16 +471,29 @@ Blockly.JavaScript['start'] = function (block) {
   return code;
 };
 
-  
-Blockly.JavaScript['enumi'] = function(block) {
+Blockly.JavaScript['enumi'] = function (block) {
   var values = [];
 
   // Check if there are connected blocks of specific types
-  var typesToCheck = ['asctime', 'severity', 'id', 'message','req_id','Other','service'];
+  var typesToCheck = [
+    'asctime',
+    'severity',
+    'id',
+    'message',
+    'req_id',
+    'Other',
+    'service',
+  ];
   for (var i = 0; i < block.inputList.length; i++) {
     var input = block.inputList[i];
-    if (input.connection && input.connection.targetBlock() && typesToCheck.includes(input.connection.targetBlock().type)) {
-      var code = Blockly.JavaScript[input.connection.targetBlock().type](input.connection.targetBlock())[0];
+    if (
+      input.connection &&
+      input.connection.targetBlock() &&
+      typesToCheck.includes(input.connection.targetBlock().type)
+    ) {
+      var code = Blockly.JavaScript[input.connection.targetBlock().type](
+        input.connection.targetBlock()
+      )[0];
       values.push(code);
     }
   }
@@ -453,53 +502,56 @@ Blockly.JavaScript['enumi'] = function(block) {
   return code + '\n';
 };
 
-Blockly.JavaScript['asctime'] = function(block) {
+Blockly.JavaScript['asctime'] = function (block) {
   var code = '"asctime"';
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['severity'] = function(block) {
+Blockly.JavaScript['severity'] = function (block) {
   var code = '"severity"';
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['id'] = function(block) {
+Blockly.JavaScript['id'] = function (block) {
   var code = '"id"';
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['message'] = function(block) {
+Blockly.JavaScript['message'] = function (block) {
   var code = '"message"';
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['service'] = function(block) {
+Blockly.JavaScript['service'] = function (block) {
   var code = '"service"';
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-
-Blockly.JavaScript['req_id'] = function(block) {
+Blockly.JavaScript['req_id'] = function (block) {
   var code = '"req_id"';
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-
-Blockly.JavaScript['Other'] = function(block) {
+Blockly.JavaScript['Other'] = function (block) {
   var code = '"Other"';
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-
-Blockly.JavaScript['enums'] = function(block) {
+Blockly.JavaScript['enums'] = function (block) {
   var values = [];
 
   // Check if there are connected blocks of specific types
-  var typesToCheck = ['High','Low','Medium'];
+  var typesToCheck = ['High', 'Low', 'Medium'];
   for (var i = 0; i < block.inputList.length; i++) {
     var input = block.inputList[i];
-    if (input.connection && input.connection.targetBlock() && typesToCheck.includes(input.connection.targetBlock().type)) {
-      var code = Blockly.JavaScript[input.connection.targetBlock().type](input.connection.targetBlock())[0];
+    if (
+      input.connection &&
+      input.connection.targetBlock() &&
+      typesToCheck.includes(input.connection.targetBlock().type)
+    ) {
+      var code = Blockly.JavaScript[input.connection.targetBlock().type](
+        input.connection.targetBlock()
+      )[0];
       values.push(code);
     }
   }
@@ -508,32 +560,36 @@ Blockly.JavaScript['enums'] = function(block) {
   return code + '\n';
 };
 
-Blockly.JavaScript['High'] = function(block) {
+Blockly.JavaScript['High'] = function (block) {
   var code = '"High"';
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['Low'] = function(block) {
+Blockly.JavaScript['Low'] = function (block) {
   var code = '"Low"';
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['Medium'] = function(block) {
+Blockly.JavaScript['Medium'] = function (block) {
   var code = '"Medium"';
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-
-
-Blockly.JavaScript['enumd'] = function(block) {
+Blockly.JavaScript['enumd'] = function (block) {
   var values = [];
 
   // Check if there are connected blocks of specific types
-  var typesToCheck = ['|','/',' ','Other'];
+  var typesToCheck = ['|', '/', ' ', 'Other'];
   for (var i = 0; i < block.inputList.length; i++) {
     var input = block.inputList[i];
-    if (input.connection && input.connection.targetBlock() && typesToCheck.includes(input.connection.targetBlock().type)) {
-      var code = Blockly.JavaScript[input.connection.targetBlock().type](input.connection.targetBlock())[0];
+    if (
+      input.connection &&
+      input.connection.targetBlock() &&
+      typesToCheck.includes(input.connection.targetBlock().type)
+    ) {
+      var code = Blockly.JavaScript[input.connection.targetBlock().type](
+        input.connection.targetBlock()
+      )[0];
       values.push(code);
     }
   }
@@ -542,17 +598,17 @@ Blockly.JavaScript['enumd'] = function(block) {
   return code + '\n';
 };
 
-Blockly.JavaScript['/'] = function(block) {
+Blockly.JavaScript['/'] = function (block) {
   var code = '"/"';
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['|'] = function(block) {
+Blockly.JavaScript['|'] = function (block) {
   var code = '"|"';
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript[' '] = function(block) {
+Blockly.JavaScript[' '] = function (block) {
   var code = '" "';
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -610,7 +666,6 @@ const toolbox = {
           kind: 'block',
           type: 'properties',
         },
-        
 
         {
           kind: 'category',
@@ -619,6 +674,10 @@ const toolbox = {
             {
               kind: 'block',
               type: 'name',
+            },
+            {
+              kind: 'block',
+              type: 'namelast',
             },
             {
               kind: 'block',
@@ -644,6 +703,10 @@ const toolbox = {
             {
               kind: 'block',
               type: 'desc',
+            },
+            {
+              kind: 'block',
+              type: 'desclast',
             },
             {
               kind: 'block',
@@ -674,6 +737,10 @@ const toolbox = {
         },
         {
           kind: 'block',
+          type: 'Loggerlast',
+        },
+        {
+          kind: 'block',
           type: 'type',
         },
 
@@ -686,8 +753,7 @@ const toolbox = {
           kind: 'block',
           type: 'properties',
         },
-       
-      
+
         {
           kind: 'category',
           name: 'Type',
@@ -715,8 +781,7 @@ const toolbox = {
               kind: 'block',
               type: 'Plugin',
             },
-            
-    
+
             {
               kind: 'block',
               type: 'type',
@@ -751,7 +816,6 @@ const toolbox = {
               kind: 'block',
               type: 'properties',
             },
-            
 
             {
               kind: 'category',
@@ -761,7 +825,7 @@ const toolbox = {
                   kind: 'block',
                   type: 'File-path',
                 },
-               
+
                 {
                   kind: 'block',
                   type: 'type',
@@ -780,7 +844,7 @@ const toolbox = {
                   kind: 'block',
                   type: 'Max-log-size',
                 },
-                
+
                 {
                   kind: 'block',
                   type: 'type',
@@ -840,6 +904,10 @@ const toolbox = {
           kind: 'block',
           type: 'loggingformat',
         },
+        {
+          kind: 'block',
+          type: 'loggingformatlast',
+        },
 
         {
           kind: 'block',
@@ -849,7 +917,7 @@ const toolbox = {
           kind: 'block',
           type: 'properties',
         },
-       
+
         {
           kind: 'category',
           name: 'Order',
@@ -858,7 +926,7 @@ const toolbox = {
               kind: 'block',
               type: 'Order',
             },
-           
+
             {
               kind: 'block',
               type: 'type',
@@ -961,7 +1029,6 @@ const toolbox = {
           type: 'properties',
         },
 
-        
         {
           kind: 'category',
           name: 'ID',
@@ -970,7 +1037,7 @@ const toolbox = {
               kind: 'block',
               type: 'ID',
             },
-            
+
             {
               kind: 'block',
               type: 'type',
@@ -989,7 +1056,7 @@ const toolbox = {
               kind: 'block',
               type: 'Log',
             },
-            
+
             {
               kind: 'block',
               type: 'type',
@@ -999,10 +1066,6 @@ const toolbox = {
               kind: 'block',
               type: 'properties',
             },
-
-         
-
-          
 
             {
               kind: 'category',
@@ -1075,8 +1138,7 @@ const toolbox = {
                   kind: 'block',
                   type: 'properties',
                 },
-              
-             
+
                 {
                   kind: 'category',
                   name: 'Name',
@@ -1128,7 +1190,7 @@ const toolbox = {
               kind: 'block',
               type: 'Resolution',
             },
-           
+
             {
               kind: 'block',
               type: 'type',
@@ -1206,12 +1268,11 @@ const toolbox = {
               kind: 'block',
               type: 'References',
             },
-            
+
             {
               kind: 'block',
               type: 'type',
             },
-            
 
             {
               kind: 'block',
@@ -1247,7 +1308,7 @@ const toolbox = {
               kind: 'block',
               type: 'ReturnCodes',
             },
-           
+
             {
               kind: 'block',
               type: 'type',
@@ -1258,7 +1319,6 @@ const toolbox = {
               type: 'properties',
             },
 
-        
             {
               kind: 'category',
               name: 'HTTP',
@@ -1326,6 +1386,19 @@ Blockly.Blocks['desc'] = {
   },
 };
 
+Blockly.Blocks['desclast'] = {
+  init: function () {
+    this.appendDummyInput().appendField('description last {');
+    this.appendStatementInput('properties').setCheck(null);
+    this.appendDummyInput().appendField('}');
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
+};
+
 Blockly.Blocks['name'] = {
   init: function () {
     this.appendDummyInput().appendField('Name {');
@@ -1338,7 +1411,18 @@ Blockly.Blocks['name'] = {
     this.setHelpUrl('');
   },
 };
-
+Blockly.Blocks['namelast'] = {
+  init: function () {
+    this.appendDummyInput().appendField('Name last {');
+    this.appendStatementInput('properties').setCheck(null);
+    this.appendDummyInput().appendField('}');
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
+};
 Blockly.Blocks['items'] = {
   init: function () {
     this.appendDummyInput().appendField('items {');
@@ -1355,6 +1439,18 @@ Blockly.Blocks['items'] = {
 Blockly.Blocks['loggingformat'] = {
   init: function () {
     this.appendDummyInput().appendField('Logging-Format {');
+    this.appendStatementInput('properties').setCheck(null);
+    this.appendDummyInput().appendField('}');
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
+};
+Blockly.Blocks['loggingformatlast'] = {
+  init: function () {
+    this.appendDummyInput().appendField('Logging-Format last {');
     this.appendStatementInput('properties').setCheck(null);
     this.appendDummyInput().appendField('}');
     this.setPreviousStatement(true, null);
@@ -1453,6 +1549,19 @@ Blockly.Blocks['Delimeter'] = {
 Blockly.Blocks['Logger'] = {
   init: function () {
     this.appendDummyInput().appendField('Logger {');
+    this.appendStatementInput('properties').setCheck(null);
+    this.appendDummyInput().appendField('}');
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
+};
+
+Blockly.Blocks['Loggerlast'] = {
+  init: function () {
+    this.appendDummyInput().appendField('Logger last{');
     this.appendStatementInput('properties').setCheck(null);
     this.appendDummyInput().appendField('}');
     this.setPreviousStatement(true, null);
@@ -1845,203 +1954,213 @@ Blockly.Blocks['SelfHealing'] = {
   },
 };
 
-
 Blockly.Blocks['enumi'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldLabelSerializable("enum"), "NAME");
-    this.appendValueInput("NAME")
-        .setCheck("Array");
-    this.appendValueInput("NAME")
-      .setCheck("Array");
-      this.appendValueInput("NAME")
-      .setCheck("Array");
-      this.appendValueInput("NAME")
-      .setCheck("Array");
-      this.appendValueInput("NAME")
-      .setCheck("Array");
-      this.appendValueInput("NAME")
-      .setCheck("Array");
-      this.appendValueInput("NAME")
-      .setCheck("Array");
+  init: function () {
+    this.appendDummyInput().appendField(
+      new Blockly.FieldLabelSerializable('enum'),
+      'NAME'
+    );
+    this.appendValueInput('NAME').setCheck('Array');
+    this.appendValueInput('NAME').setCheck('Array');
+    this.appendValueInput('NAME').setCheck('Array');
+    this.appendValueInput('NAME').setCheck('Array');
+    this.appendValueInput('NAME').setCheck('Array');
+    this.appendValueInput('NAME').setCheck('Array');
+    this.appendValueInput('NAME').setCheck('Array');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
 };
-
-
 
 Blockly.Blocks['enumd'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldLabelSerializable("enum"), "NAME");
-    this.appendValueInput("NAME")
-        .setCheck("Array");
-    this.appendValueInput("NAME")
-      .setCheck("Array");
-      this.appendValueInput("NAME")
-      .setCheck("Array");
-      this.appendValueInput("NAME")
-      .setCheck("Array");
-      this.appendValueInput("NAME")
-      .setCheck("Array");
-     this
+  init: function () {
+    this.appendDummyInput().appendField(
+      new Blockly.FieldLabelSerializable('enum'),
+      'NAME'
+    );
+    this.appendValueInput('NAME').setCheck('Array');
+    this.appendValueInput('NAME').setCheck('Array');
+    this.appendValueInput('NAME').setCheck('Array');
+    this.appendValueInput('NAME').setCheck('Array');
+    this.appendValueInput('NAME').setCheck('Array');
+    this;
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
 };
 
-
-
 Blockly.Blocks['enums'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldLabelSerializable("enum"), "NAME");
-    this.appendValueInput("NAME")
-        .setCheck("Array");
-    this.appendValueInput("NAME")
-      .setCheck("Array");
-      this.appendValueInput("NAME")
-      .setCheck("Array");
-     
-     this
+  init: function () {
+    this.appendDummyInput().appendField(
+      new Blockly.FieldLabelSerializable('enum'),
+      'NAME'
+    );
+    this.appendValueInput('NAME').setCheck('Array');
+    this.appendValueInput('NAME').setCheck('Array');
+    this.appendValueInput('NAME').setCheck('Array');
+
+    this;
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
 };
 
 Blockly.Blocks['asctime'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldLabelSerializable("asctime"), "NAME");
+  init: function () {
+    this.appendDummyInput().appendField(
+      new Blockly.FieldLabelSerializable('asctime'),
+      'NAME'
+    );
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
 };
 Blockly.Blocks['service'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldLabelSerializable("service"), "NAME");
+  init: function () {
+    this.appendDummyInput().appendField(
+      new Blockly.FieldLabelSerializable('service'),
+      'NAME'
+    );
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
 };
 
 Blockly.Blocks['req_id'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldLabelSerializable("req_id"), "NAME");
+  init: function () {
+    this.appendDummyInput().appendField(
+      new Blockly.FieldLabelSerializable('req_id'),
+      'NAME'
+    );
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
 };
 
 Blockly.Blocks['severity'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldLabelSerializable("severity"), "NAME");
+  init: function () {
+    this.appendDummyInput().appendField(
+      new Blockly.FieldLabelSerializable('severity'),
+      'NAME'
+    );
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
 };
 Blockly.Blocks['id'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldLabelSerializable("id"), "NAME");
+  init: function () {
+    this.appendDummyInput().appendField(
+      new Blockly.FieldLabelSerializable('id'),
+      'NAME'
+    );
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
 };
 
 Blockly.Blocks['message'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldLabelSerializable("message"), "NAME");
+  init: function () {
+    this.appendDummyInput().appendField(
+      new Blockly.FieldLabelSerializable('message'),
+      'NAME'
+    );
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
 };
 Blockly.Blocks['Other'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldLabelSerializable("Other"), "NAME");
+  init: function () {
+    this.appendDummyInput().appendField(
+      new Blockly.FieldLabelSerializable('Other'),
+      'NAME'
+    );
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
 };
 Blockly.Blocks['|'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldLabelSerializable("|"), "NAME");
+  init: function () {
+    this.appendDummyInput().appendField(
+      new Blockly.FieldLabelSerializable('|'),
+      'NAME'
+    );
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
 };
 Blockly.Blocks['/'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldLabelSerializable("/"), "NAME");
+  init: function () {
+    this.appendDummyInput().appendField(
+      new Blockly.FieldLabelSerializable('/'),
+      'NAME'
+    );
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
 };
 Blockly.Blocks['High'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldLabelSerializable("High"), "NAME");
+  init: function () {
+    this.appendDummyInput().appendField(
+      new Blockly.FieldLabelSerializable('High'),
+      'NAME'
+    );
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};Blockly.Blocks['Medium'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldLabelSerializable("Medium"), "NAME");
-    this.setOutput(true, null);
-    this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};Blockly.Blocks['Low'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldLabelSerializable("Low"), "NAME");
-    this.setOutput(true, null);
-    this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
 };
-
-
+Blockly.Blocks['Medium'] = {
+  init: function () {
+    this.appendDummyInput().appendField(
+      new Blockly.FieldLabelSerializable('Medium'),
+      'NAME'
+    );
+    this.setOutput(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
+};
+Blockly.Blocks['Low'] = {
+  init: function () {
+    this.appendDummyInput().appendField(
+      new Blockly.FieldLabelSerializable('Low'),
+      'NAME'
+    );
+    this.setOutput(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
+};
 
 let workspace = {};
 
