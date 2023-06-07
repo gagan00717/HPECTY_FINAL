@@ -8,8 +8,13 @@ Technologies such as Google Blockly, JSON Forms, React.js are to be used. Tools 
 
 
 
+This seed demonstrates how to use  the app 
 
 
+- Execute `npm ci` to install the prerequisites. If you want to have the latest released versions use `npm install`.
+- Execute `npm start` to start the application.
+
+Browse to http://localhost:3000 to see the application in action.
 
 
 
