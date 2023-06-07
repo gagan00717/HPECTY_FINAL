@@ -17,6 +17,9 @@ This seed demonstrates how to use  the app
 Browse to http://localhost:3000 to see the application in action.
 
 
+you can find the deployment here : https://hpecty-final.vercel.app/
+
+
 
 ## Technicality used 
 
